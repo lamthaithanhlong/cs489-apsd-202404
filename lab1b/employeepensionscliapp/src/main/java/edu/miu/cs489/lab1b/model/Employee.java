@@ -24,8 +24,6 @@ public class Employee {
         this.pensionPlan = pensionPlan;
     }
 
-    // Assume other getters and setters are implemented here
-
     public String getLastName() {
         return lastName;
     }

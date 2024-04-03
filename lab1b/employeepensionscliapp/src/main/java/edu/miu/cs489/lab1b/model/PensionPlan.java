@@ -8,12 +8,9 @@ public class PensionPlan {
     private LocalDate enrollmentDate;
     private BigDecimal monthlyContribution;
 
-    // Constructor, getters, and setters
     public PensionPlan(String planReferenceNumber, LocalDate enrollmentDate, BigDecimal monthlyContribution) {
         this.planReferenceNumber = planReferenceNumber;
         this.enrollmentDate = enrollmentDate;
         this.monthlyContribution = monthlyContribution;
     }
-
-    // Assume other getters and setters are implemented here
 }
