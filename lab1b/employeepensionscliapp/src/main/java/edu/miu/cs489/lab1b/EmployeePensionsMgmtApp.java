@@ -34,11 +34,11 @@ public class EmployeePensionsMgmtApp {
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
         String allEmployeesJson = mapper.writeValueAsString(employees
                 .stream()
-                .sorted(Comparator.comparing(Employee::getLastName)
+                .sorted(Comparator.comparing(Employee::getFirstName)
                         .thenComparing(Employee::getYearlySalary).reversed())
                 .collect(Collectors.toList()));
 
-        System.out.println(allEmployeesJson);
+        System.out.println("allEmployeesJson: " + allEmployeesJson);
 
         // For the Monthly Upcoming Enrollees report
         LocalDate nextMonth = LocalDate.now().plusMonths(1);
@@ -48,6 +48,6 @@ public class EmployeePensionsMgmtApp {
                 .sorted(Comparator.comparing(Employee::getEmploymentDate))
                 .collect(Collectors.toList()));
 
-        System.out.println(upcomingEnrolleesJson);
+        System.out.println("upcomingEnrolleesJson" + upcomingEnrolleesJson);
     }
 }

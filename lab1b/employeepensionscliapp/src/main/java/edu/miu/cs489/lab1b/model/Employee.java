@@ -28,6 +28,10 @@ public class Employee {
         return lastName;
     }
 
+    public String getFirstName() {
+        return firstName;
+    }
+
     public BigDecimal getYearlySalary() {
         return yearlySalary;
     }
