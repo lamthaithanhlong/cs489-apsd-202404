@@ -50,4 +50,19 @@ public class EmployeePensionsMgmtApp {
 
         System.out.println("upcomingEnrolleesJson" + upcomingEnrolleesJson);
     }
+
+    private static void printAllEmployees(List<Employee> employees) {
+        System.out.println("======== Printing All Employees ========");
+        employees.stream()
+                .sorted(Comparator.comparing(Employee::getLastName).thenComparing(Employee::getYearlySalary,
+                        Comparator.reverseOrder()))
+                .forEach(System.out::println);
+    }
+
+    private static void printMonthlyUpcomingEnrollees(List<Employee> employees) {
+        System.out.println("======== Printing Upcoming Enrollees ========");
+        // TODO Sort
+        employees.stream().filter(Employee::isUpcomingEnrollee)
+                .forEach(System.out::println);
+    }
 }
