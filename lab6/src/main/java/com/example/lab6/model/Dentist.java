@@ -3,6 +3,8 @@ package com.example.lab6.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.Set;
+
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
@@ -16,4 +18,7 @@ public class Dentist {
 
     @Column(name = "name", nullable = false)
     private String name;
+
+    @OneToMany(mappedBy = "dentist")
+    private Set<Appointment> appointments;
 }

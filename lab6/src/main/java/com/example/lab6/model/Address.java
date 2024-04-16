@@ -11,7 +11,6 @@ import lombok.*;
 @AllArgsConstructor
 @Getter
 @Setter
-@Data
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

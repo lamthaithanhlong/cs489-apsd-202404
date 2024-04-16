@@ -4,17 +4,17 @@ import jakarta.persistence.*;
 
 import java.util.List;
 
+import java.util.Set;
+
 @Entity
 public class Surgery {
     @Id
-    private String surgeryNumber;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    @OneToMany(mappedBy = "surgery")
-    private List<Appointment> appointments;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "address_id", referencedColumnName = "id")
+    @OneToOne
     private Address address;
 
-    // Getters and setters...
+    @OneToMany(mappedBy = "surgery")
+    private Set<Appointment> appointments;
 }

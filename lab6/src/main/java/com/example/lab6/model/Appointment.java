@@ -20,19 +20,16 @@ public class Appointment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private LocalDateTime appointmentDateTime;
 
     @ManyToOne
-    @JoinColumn(name = "patient_number")
     private Patient patient;
 
     @ManyToOne
-    @JoinColumn(name = "dentist_number")
     private Dentist dentist;
 
     @ManyToOne
-    @JoinColumn(name = "surgery_id")
     private Surgery surgery;
 
-    // Getters and setters...
+    private LocalDate appointmentDate;
+    private LocalTime appointmentTime;
 }
