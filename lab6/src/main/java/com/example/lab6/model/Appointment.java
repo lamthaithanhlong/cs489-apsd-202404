@@ -32,4 +32,7 @@ public class Appointment {
 
     private LocalDate appointmentDate;
     private LocalTime appointmentTime;
+
+    public Appointment(LocalDate parse, LocalTime parse1, Patient gillian, Dentist tony, Surgery s15) {
+    }
 }
