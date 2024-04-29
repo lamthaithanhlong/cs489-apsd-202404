@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>ADS - System Administration - Users</title>
+</head>
+<body>
+  <header th:replace="fragments/header :: header"></header>
+  <main>
+    <h1>System Administration</h1>
+    <nav>
+      <a href="/api/users/list">Manage Users</a> |
+      <a href="#">Manage Bills</a> |
+      <a href="#">Manage Appointments</a>
+    </nav>
+    <h2 style="background-color: aqua;">Our Publishers</h2>
+    <section>
+      <form action="/api/users/search" method="get">
+        <fieldset>
+          <legend style="font-weight: bolder;">Search for User(s)</legend>
+          <label>
+            You may search by User's Name or any part of the Address data.
+          </label>
+          <div>
+            <input type="search" name="searchString" id="searchString" style="width: 35%; height: 4em;"
+              th:value="${searchString}" placeholder="Enter some text to search for User"
+              autofocus>
+            <button type="submit" style="height: 4em; width: 7em;">Search</button>
+          </div>
+        </fieldset>
+      </form>
+    </section>
+    <section style="margin-top: 1em;">
+      <table border="1" cellpadding="20" cellspacing="0">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>User Name</th>
+            <th>Primary Address</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="user, counter : ${users}">
+            <th th:text="${counter.count}"></th>
+            <td th:text="${user.firstName}"></td>
+            <td th:if="${user.address != null}">
+              <p>
+                <span th:text="${user.address.street}"></span><br>
+                <span th:text="${user.address.city}+ ', ' + ${user.address.state}+' '+${user.address.zip}"></span><br>
+              </p>
+            </td>
+          </tr>
+          <tr th:if="${users.isEmpty()}">
+            <td colspan="3" th:align="center">No Users found</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+    <section style="margin-top: 1em;">
+      <!-- Pagination -->
+      <table border="1" cellspacing="3" cellpadding="5">
+        <tbody>
+          <tr>
+            <th scope="row">Pages:</th>
+            <td th:each="pageCount : ${#numbers.sequence(1, users.totalPages)}">
+              <a th:if="${currentPageNo == pageCount-1}" th:href="@{/api/users/list(pageNo=${pageCount-1})}"
+                th:text="${pageCount}" style="padding: 100%; background-color:aqua;"></a>
+              <a th:if="${currentPageNo != pageCount-1}" th:href="@{/api/users/list(pageNo=${pageCount-1})}"
+                th:text="${pageCount}"></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+</body>
+</html>
